@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>toast</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jersey+10&display=swap" rel="stylesheet">
+    <script type="importmap">
+        {
+          "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@latest/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@latest/examples/jsm/"
+          }
+        }
+    </script>
+    <style>
+      body {
+        background-color: skyblue;
+      }
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      #message {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: 100;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Jersey 10", sans-serif;
+        font-style: normal;
+        font-size: 64px;
+        top: calc(-150px);
+        color: white;
+        opacity: 0.5;
+        z-index: -1;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+      }
+      @media (min-width: 768px) {
+        #message {
+          font-size: 128px;
+        }
+      }
+      @media (min-width: 1024px) {
+        #message {
+          font-size: 256px;
+        }
+      }
+      #github {
+        position: absolute;
+        left: 50%;
+        top: 60%;
+        transform: translate(-50%, -50%);
+        z-index: 100;
+        display: flex;
+        font-family: "Jersey 10", sans-serif;
+        font-style: normal;
+        font-size: 32px;
+        user-select: none;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        
+        color: white;
+        opacity: 0.5;
+      }
+    </style>
+</head>
+<body>
+    <div id="message">hold...</div>
+    <a onclick="return false" ondblclick="location=this.href" id="github" href="https://github.com/lightly-toasted">@lightly-toasted</a>
+    <script src="main.js" type="module"></script>
+</body>
+</html>
