@@ -30,6 +30,18 @@ window.addEventListener('resize', () => {
 	renderer.setSize( window.innerWidth, window.innerHeight );
 });
 
+let tiers = [
+	{ name: 'Eww!', color: 'darkgray', threshold: 200 },
+	{ name: 'Yucky', color: 'gray', threshold: 150 },
+	{ name: 'Meh.', color: 'darkseagreen', threshold: 100 },
+	{ name: 'Hmm...', color: 'darkolivegreen', threshold: 50 },
+	{ name: 'Good', color: 'limegreen', threshold: 25 },
+	{ name: 'Tasty!', color: 'greenyellow', threshold: 10 },
+	{ name: 'Awesome', color: 'crimson', threshold: 2 },
+	{ name: 'LEGENDARY', color: 'goldenrod', threshold: 1 },
+	{ name: 'PERFECT', color: 'gold', threshold: 0 }
+]
+
 
 document.body.appendChild( renderer.domElement );
 renderer.setClearColor(0x000000, 0)
@@ -42,9 +54,8 @@ camera.position.z = 5;
 
 var loader = new GLTFLoader();
 
-loader.load('model.glb', function ( gltf )
-{
-    const toaster = gltf.scene;  // sword 3D object is loaded
+loader.load('model.glb', gltf => {
+    const toaster = gltf.scene;
     toaster.scale.set(3, 3, 3);
     toaster.position.y = -.5;
 	toaster.rotation.set(0.4, 37, 0)
@@ -65,50 +76,13 @@ loader.load('model.glb', function ( gltf )
 	let burntAt = 0
 	let holdInterval;
 
-	const tiers = [
-		{
-			name: 'Eww!',
-			color: 'darkgray',
-			threshold: 200,
-		},
-		{
-			name: 'Yucky',
-			color: 'gray',
-			threshold: 150,
-		},
-		{
-			name: 'Meh.',
-			color: 'darkseagreen',
-			threshold: 100,
-		},
-		{
-			name: 'Hmm...',
-			color: 'darkolivegreen',
-			threshold: 50,
-		},
-		{
-			name: 'Tasty!',
-			color: 'lightblue',
-			threshold: 40,
-		},
-		{
-			name: 'LEGENDARY',
-			color: 'goldenrod',
-			threshold: 2,
-		},
-		{
-			name: 'PERFECT!',
-			color: 'gold',
-			threshold: 0,
-		}
-	]
-
     function onStart() {
 		burntTexture.visible = false
 		message.style.color = 'white'
 		time = 0
 		burntAt = Math.round(Math.random() * 5) + 5
 		
+		clearInterval(holdInterval)
 		holdInterval = setInterval(() => {
 			time++
 			message.textContent = `${time / 100} / ${burntAt}`
@@ -141,8 +115,10 @@ loader.load('model.glb', function ( gltf )
 	const clock = new THREE.Clock();
 	function animate() {
 		requestAnimationFrame(animate);
+
 		const delta = clock.getDelta();
 		mixer.update(delta)
+
 		renderer.render(scene, camera);
 	}
 
