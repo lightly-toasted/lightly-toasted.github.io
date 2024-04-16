@@ -96,7 +96,7 @@ loader.load('model.glb', gltf => {
     function onEnd() {
 		const diff = burntAt * 100 - time
 		if (time < 100) message.textContent = 'hold...';
-		else if (diff > 0) {
+		else if (diff >= 0) {
 			const resultTier = tiers.find(tier => diff >= tier.threshold);
 			message.style.color = resultTier.color;
 			message.textContent = `${resultTier.name} (-${diff / 100}s)`;
