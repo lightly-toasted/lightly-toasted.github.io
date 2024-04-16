@@ -25,3 +25,4 @@ git clone https://github.com/lightly-toasted/lightly-toasted.github.io
 
 ## TODO
 - [ ] Add sounds
+- [ ] Add comments to code
